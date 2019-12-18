@@ -150,34 +150,69 @@ if __name__ == '__main__':
 #4
 
 
-class Keypad():
-    def __init__(self, *args):
-    self.btttns = {}
-    for ar in args:
-        self.btttns[ar.pos] = ar
-            
-            def prs(self, info):
-                try:
-                    self.btttns[info].pressed += 1
-                    return self.btttns[info].key
-                        except:
-                            print('Dude!, Btttn doesnt exist')
-                            pass
-                                def type(self, type_ip):
-                                    try:
-                                        res = ""
-                                            for i in type_ip:
-                                                self.btttns[i].pressed += 1
-                                                res += self.btttns[i].key
-                                                    return res
-                                                        except:
-                                                            print('Btttn doesnt exist')
-                                                            pass
-class Btttn(): # Button class
-    def __init__(self, pstn, ky):
-    self.pos = pstn
-    self.key = ky
-    self.pressed = 0
+#create button class
+class Bttn:
+    def __init__(self,pstn,ky):
+        self.pos = pstn
+        self.key = ky
+        self.pressed = 0
+  
+#create keypad class
+class Keypad:
+  
+#create empty dictionary
+    kp = {}
+  
+#empty list for buttons
+    bttns = []
+  
+def __init__(self,*args):
+  
+    self.bttns = args
+  
+#read every button from args and add it to dictionary
+    for arg in args:
+        self.kp[arg.pos] = arg.key #add key
+  
+def prs(self,info):
+#press the button
+    self.bttns[info].pressed += 1
+  
+#get value
+    key_val = self.kp.get(info)
+  
+    return key_val
+  
+def type(self,type_ip):
+  
+#create empty string
+    text = ""
+  
+#read data from type_ip
+    for i in type_ip:
+        text = text + self.kp.get(i)
+  
+#press the button
+        self.bttns[i].pressed += 1
+  
+    return text #return text
+  
+
+#test the code
+a1 = Bttn(0,'H')
+a2 = Bttn(1,'I')
+
+ky = Keypad(a1,a2)
+
+print(ky.prs(0))
+print(ky.prs(1))
+print(ky.prs(0))
+
+print(ky.type([0,1]))
+print(ky.type([1,0]))
+
+print(a1.pressed)
+print(a2.pressed)
 
 
 
