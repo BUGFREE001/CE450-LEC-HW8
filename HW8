@@ -22,7 +22,6 @@ class People:
         # Simply return the msg
         return self.msg
 
-    # This method will be called whenever any method in this class is called.
     def __call__(self, *args, **kwargs):
         # Set the message here with the value that has previously returned
         self.msg=args[0]
@@ -53,7 +52,7 @@ class Twice(People):
 
 
 class VndMchn:
-    # initialize class
+    
     def __init__(self, name_of_item, price):
         self.name_of_item = name_of_item  # name of item to sell
         self.price = price  # cost per item
