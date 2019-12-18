@@ -2,22 +2,30 @@
 #1
 
 
-class People():
+class People:
     def __init__(self, name):
-    self.name = name
-    self.sth = "I am reading lecture handout!"
-        def say(self, sth):
-            self.sth = sth
-return sth
-    def ask(self, sth):
-    return self.say("Would you please " + sth)
-        def greet(self):
-return self.say("Hi, this is " + self.name)
-    def reiterate(self):
-    return self.say(self.sth)
-        def ask(self, sth):
-return self.say("Would you please " + sth)
+        self.name = name
+        # Add a variable here with initial value
+        self.msg = 'I am reading lecture handout!'
 
+    def say(self, sth):
+        self(sth)
+        return sth
+
+    def ask(self, sth):
+        return self.say("Would you please " + sth)
+
+    def greet(self):
+        return self.say("Hi, this is " + self.name)
+
+    def reiterate(self, value=None):
+        # Simply return the msg
+        return self.msg
+
+    # This method will be called whenever any method in this class is called.
+    def __call__(self, *args, **kwargs):
+        # Set the message here with the value that has previously returned
+        self.msg=args[0]
 
 
 
