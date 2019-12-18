@@ -160,42 +160,37 @@ class Bttn:
 #create keypad class
 class Keypad:
   
-#create empty dictionary
     kp = {}
-  
-#empty list for buttons
     bttns = []
   
-def __init__(self,*args):
+    def __init__(self,*args):
   
-    self.bttns = args
+        self.bttns = args
   
-#read every button from args and add it to dictionary
-    for arg in args:
-        self.kp[arg.pos] = arg.key #add key
+        for arg in args:
+            self.kp[arg.pos] = arg.key #add key
   
-def prs(self,info):
-#press the button
-    self.bttns[info].pressed += 1
+    def prs(self,info):
+
+        self.bttns[info].pressed += 1
+
+        key_val = self.kp.get(info)
   
-#get value
-    key_val = self.kp.get(info)
+        return key_val
   
-    return key_val
+    def type(self,type_ip):
   
-def type(self,type_ip):
+
+        text = ""
   
-#create empty string
-    text = ""
+
+        for i in type_ip:
+            text = text + self.kp.get(i)
   
-#read data from type_ip
-    for i in type_ip:
-        text = text + self.kp.get(i)
+
+            self.bttns[i].pressed += 1
   
-#press the button
-        self.bttns[i].pressed += 1
-  
-    return text #return text
+            return text #return text
   
 
 #test the code
