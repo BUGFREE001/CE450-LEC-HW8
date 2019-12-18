@@ -150,46 +150,32 @@ if __name__ == '__main__':
 #4
 
 
-#create button class
 class Bttn:
     def __init__(self,pstn,ky):
         self.pos = pstn
         self.key = ky
         self.pressed = 0
   
-#create keypad class
+
 class Keypad:
-  
     kp = {}
     bttns = []
   
     def __init__(self,*args):
-  
         self.bttns = args
-  
         for arg in args:
             self.kp[arg.pos] = arg.key #add key
   
     def prs(self,info):
-
         self.bttns[info].pressed += 1
-
         key_val = self.kp.get(info)
-  
         return key_val
   
     def type(self,type_ip):
-  
-
         text = ""
-  
-
         for i in type_ip:
             text = text + self.kp.get(i)
-  
-
             self.bttns[i].pressed += 1
-  
             return text #return text
   
 
