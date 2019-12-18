@@ -50,36 +50,92 @@ class Twice(People):
 
 #3
 
-class VndMchn():
-    def __init__(self, item, price):
-    self.item = item
-    self.price = price
-    self.stock = 0
-    self.cash = 0
-        def vending(self):
-            if self.stock > 0:
-                if self.cash < self.price:
-return str("Need to deposit $" + str(self.price - self.cash) + " more.")
-    elif self.cash == self.price:
-        self.cash = 0
-        self.stock -= 1
-        return "Take your soda"
+
+
+class VndMchn:
+    # initialize class
+    def __init__(self, name_of_item, price):
+        self.name_of_item = name_of_item  # name of item to sell
+        self.price = price  # cost per item
+        self.balance = 0  # currently deposited money
+        self.number_of_items = 0  # currently available items
+
+    def vending(self):
+        # check if items available to sell
+        if self.number_of_items > 0:
+            # check if customer have enough balance to purchase the item
+            if self.balance >= self.price:
+                # sell one item to customer
+                self.number_of_items -= 1
+                # take money from customer
+                self.balance = self.balance - self.price
+                # print message of sale
+                print("Take your " + self.name_of_item, end="")
+                # check if customer have balance left
+                if self.balance > 0:
+                    # give remaining change back to customer
+                    print(" and $" + str(self.balance) + " change")
+                    self.balance = 0
+                else:
+                    # print new line
+                    print()
             else:
-                tmp = self.cash - self.price
-self.cash = 0
-    self.stock -= 1
-        return "Take your soda and $" + str(tmp) + " change."
-    else:
-        return "Out of stock currently"
-            def adding(self, x):
-self.stock += x
-    return "Current " + self.item + " stock: " + str(self.stock)
-        def deposit(self, x):
-if self.stock > 0:
-    self.cash += x
-        return "Current balance : $" + str(self.cash)
-    else:
-        return "Out of stock. Returning to you: $" + str(x)
+                # ask customer to deposit required amount to buy item
+                print("Need to deposit $" + str(self.price - self.balance) + " more")
+        else:
+            # print message that currently have no item to sell
+            print("Out of stock currently")
+
+    def adding(self, amount):
+        # take number of items to add to the vending machine
+        # add the amount and print message
+        self.number_of_items = self.number_of_items + amount
+        # print the stock
+        print("Current " + self.name_of_item + " stock: " + str(self.number_of_items))
+
+    def deposit(self, money):
+        # take amount of money from customer
+        # and deposit it to the vending machine
+        self.balance = self.balance + money
+        # check if vending machine can sell item
+        if self.number_of_items > 0:
+            # print the current balance
+            print("Current balance: $" + str(self.balance))
+        else:
+            # print error message and return deposited money
+            print("Out of stock. return to your $" + str(self.balance))
+
+
+# test the class in main function
+def main():
+    # create a object of vending machine
+    # set name and price of the item
+    a = VndMchn("soda", 3.5)
+    # call vending function
+    a.vending()
+    # add 2 items to the machine
+    a.adding(2)
+    # call vending function
+    a.vending()
+    # deposit $1.5
+    a.deposit(1.5)
+    # call vending function
+    a.vending()
+    # deposit $5
+    a.deposit(5)
+    # call vending function
+    a.vending()
+    # deposit $3.5
+    a.deposit(3.5)
+    # call vending function
+    a.vending()
+    # deposit $10
+    a.deposit(10)
+
+
+# run the code
+if __name__ == '__main__':
+    main()
 
 
 
